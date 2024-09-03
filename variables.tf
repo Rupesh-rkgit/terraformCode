@@ -25,13 +25,12 @@ variable "db_name" {
 
 variable "db_username" {
   description = "Username for the database"
-  default     = "RupeshDB"
+  #default     = ""    set your own password 
 }
 
 variable "db_password" {
   description = "Password for the database"
-  default     = "RupeshAWS33"
+  #default     = ""    set password
 }
 
-# alb_dns_name = "main-alb-1051536309.us-west-2.elb.amazonaws.com"
-# rds_endpoint = "main-cluster.cluster-clmugocu2uen.us-west-2.rds.amazonaws.com"
+

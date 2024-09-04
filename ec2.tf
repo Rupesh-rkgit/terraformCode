@@ -8,12 +8,13 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
+
 resource "aws_launch_template" "app" {
   name_prefix   = "app-"
   image_id      = data.aws_ami.amazon_linux_2.id
   instance_type = "t2.micro"
 
-  vpc_security_group_ids = [aws_security_group.ec2.id]
+  # vpc_security_group_ids = [aws_security_group.ec2.id]
 
   user_data = base64encode(<<-EOF
               #!/bin/bash
@@ -30,5 +31,10 @@ resource "aws_launch_template" "app" {
     tags = {
       Name = "app-instance"
     }
+  }
+
+  network_interfaces {
+    associate_public_ip_address = true
+    security_groups             = [aws_security_group.ec2.id]
   }
 }
